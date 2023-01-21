@@ -180,8 +180,10 @@
       "allow-user-signup": "Cho phép người dùng đăng ký",
       "additional-style": "Phong cách bổ sung",
       "additional-script": "Mã lệnh bổ sung",
+      "additional-hosts": "",
       "additional-style-placeholder": "Mã CSS bổ sung",
-      "additional-script-placeholder": "Mã JavaScript bổ sung"
+      "additional-script-placeholder": "Mã JavaScript bổ sung",
+      "additional-Hosts-placeholder": ""
     }
   },
   "amount-text": {

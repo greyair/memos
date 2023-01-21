@@ -12,6 +12,7 @@ interface State {
   allowSignUp: boolean;
   additionalStyle: string;
   additionalScript: string;
+  additionalHosts: string;
 }
 
 const formatBytes = (bytes: number) => {
@@ -32,6 +33,7 @@ const SystemSection = () => {
     allowSignUp: systemStatus.allowSignUp,
     additionalStyle: systemStatus.additionalStyle,
     additionalScript: systemStatus.additionalScript,
+    additionalHosts: systemStatus.additionalHosts,
   });
 
   useEffect(() => {
@@ -44,6 +46,7 @@ const SystemSection = () => {
       allowSignUp: systemStatus.allowSignUp,
       additionalStyle: systemStatus.additionalStyle,
       additionalScript: systemStatus.additionalScript,
+      additionalHosts: systemStatus.additionalHosts,
     });
   }, [systemStatus]);
 
@@ -113,6 +116,26 @@ const SystemSection = () => {
     toastHelper.success(t("message.succeed-update-additional-script"));
   };
 
+  const handleAdditionalHostsChanged = (value: string) => {
+    setState({
+      ...state,
+      additionalHosts: value,
+    });
+  };
+
+  const handleSaveAdditionalHosts = async () => {
+    try {
+      await api.upsertSystemSetting({
+        name: "additionalHosts",
+        value: JSON.stringify(state.additionalHosts),
+      });
+    } catch (error) {
+      console.error(error);
+      return;
+    }
+    toastHelper.success(t("message.update-succeed"));
+  };
+
   return (
     <div className="section-container system-section-container">
       <p className="title-text">{t("common.basic")}</p>
@@ -165,6 +188,23 @@ const SystemSection = () => {
         placeholder={t("setting.system-section.additional-script-placeholder")}
         value={state.additionalScript}
         onChange={(event) => handleAdditionalScriptChanged(event.target.value)}
+      />
+      <div className="form-label mt-2">
+        <span className="normal-text">{t("setting.system-section.additional-hosts")}</span>
+        <Button onClick={handleSaveAdditionalHosts}>{t("common.save")}</Button>
+      </div>
+      <Textarea
+        className="w-full"
+        color="neutral"
+        sx={{
+          fontFamily: "monospace",
+          fontSize: "14px",
+        }}
+        minRows={4}
+        maxRows={4}
+        placeholder={t("setting.system-section.additional-hosts-placeholder")}
+        value={state.additionalHosts}
+        onChange={(event) => handleAdditionalHostsChanged(event.target.value)}
       />
     </div>
   );

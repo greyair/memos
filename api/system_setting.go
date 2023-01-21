@@ -21,6 +21,8 @@ const (
 	SystemSettingAdditionalStyleName SystemSettingName = "additionalStyle"
 	// SystemSettingAdditionalScriptName is the key type of additional script.
 	SystemSettingAdditionalScriptName SystemSettingName = "additionalScript"
+	// SystemSettingAdditionalHostsName is the key type of additional script.
+	SystemSettingAdditionalHostsName SystemSettingName = "additionalHosts"
 	// SystemSettingCustomizedProfileName is the key type of customized server profile.
 	SystemSettingCustomizedProfileName SystemSettingName = "customizedProfile"
 )
@@ -53,6 +55,8 @@ func (key SystemSettingName) String() string {
 		return "additionalStyle"
 	case SystemSettingAdditionalScriptName:
 		return "additionalScript"
+	case SystemSettingAdditionalHostsName:
+		return "additionalHosts"
 	case SystemSettingCustomizedProfileName:
 		return "customizedProfile"
 	}
@@ -103,6 +107,12 @@ func (upsert SystemSettingUpsert) Validate() error {
 			return fmt.Errorf("failed to unmarshal system setting additional style value")
 		}
 	} else if upsert.Name == SystemSettingAdditionalScriptName {
+		value := ""
+		err := json.Unmarshal([]byte(upsert.Value), &value)
+		if err != nil {
+			return fmt.Errorf("failed to unmarshal system setting additional script value")
+		}
+	} else if upsert.Name == SystemSettingAdditionalHostsName {
 		value := ""
 		err := json.Unmarshal([]byte(upsert.Value), &value)
 		if err != nil {

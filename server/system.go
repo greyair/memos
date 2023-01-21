@@ -48,6 +48,7 @@ func (s *Server) registerSystemRoutes(g *echo.Group) {
 			AllowSignUp:      false,
 			AdditionalStyle:  "",
 			AdditionalScript: "",
+			AdditionalHosts:  "",
 			CustomizedProfile: api.CustomizedProfile{
 				Name:        "memos",
 				LogoURL:     "",
@@ -79,6 +80,8 @@ func (s *Server) registerSystemRoutes(g *echo.Group) {
 				systemStatus.AdditionalStyle = value.(string)
 			} else if systemSetting.Name == api.SystemSettingAdditionalScriptName {
 				systemStatus.AdditionalScript = value.(string)
+			} else if systemSetting.Name == api.SystemSettingAdditionalHostsName {
+				systemStatus.AdditionalHosts = value.(string)
 			} else if systemSetting.Name == api.SystemSettingCustomizedProfileName {
 				valueMap := value.(map[string]interface{})
 				systemStatus.CustomizedProfile = api.CustomizedProfile{}

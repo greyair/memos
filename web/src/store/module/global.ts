@@ -11,6 +11,7 @@ export const initialGlobalState = async () => {
       allowSignUp: false,
       additionalStyle: "",
       additionalScript: "",
+      additionalHosts: "",
       customizedProfile: {
         name: "memos",
         logoUrl: "/logo.png",

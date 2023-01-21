@@ -21,6 +21,7 @@ const globalSlice = createSlice({
       allowSignUp: false,
       additionalStyle: "",
       additionalScript: "",
+      additionalHosts: "",
       customizedProfile: {
         name: "memos",
         logoUrl: "/logo.png",

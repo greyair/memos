@@ -20,6 +20,7 @@ interface SystemStatus {
   allowSignUp: boolean;
   additionalStyle: string;
   additionalScript: string;
+  additionalHosts: string;
   customizedProfile: CustomizedProfile;
 }
 

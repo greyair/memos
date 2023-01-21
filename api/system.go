@@ -14,6 +14,8 @@ type SystemStatus struct {
 	AdditionalStyle string `json:"additionalStyle"`
 	// Additional script.
 	AdditionalScript string `json:"additionalScript"`
+	// Additional Hosts.
+	AdditionalHosts string `json:"additionalHosts"`
 	// Customized server profile, including server name and external url.
 	CustomizedProfile CustomizedProfile `json:"customizedProfile"`
 }
